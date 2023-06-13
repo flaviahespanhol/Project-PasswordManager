@@ -1,16 +1,32 @@
-function Form() {
+type FormProps = {
+  formOculto: React.Dispatch<React.SetStateAction<boolean>>
+};
+
+function Form({ formOculto }: FormProps) {
+  const ocultandoForm = () => {
+    formOculto(true);
+  };
   return (
     <form action="">
-      <label htmlFor="Nome serviço">Nome do serviço</label>
-      <input id="Nome serviço" type="text" />
-      <label htmlFor="Login">Login</label>
-      <input id="Login" type="text" />
-      <label htmlFor="Senha">Senha</label>
-      <input id="Senha" type="password" />
-      <label htmlFor="Url">URL</label>
-      <input id="Url" type="text" />
+      <label htmlFor="Nome serviço">
+        Nome do serviço
+        <input id="Nome serviço" type="text" />
+      </label>
+      <label htmlFor="Login">
+        Login
+        <input id="Login" type="text" />
+      </label>
+      <label htmlFor="Senha">
+        Senha
+        <input id="Senha" type="password" />
+      </label>
+      <label htmlFor="Url">
+        URL
+        <input id="Url" type="text" />
+      </label>
       <button>Cadastrar</button>
-      <button>Cancelar</button>
+      <button onClick={ ocultandoForm }>Cancelar</button>
+
     </form>
   );
 }
