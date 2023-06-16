@@ -1,5 +1,3 @@
-import React from 'react';
-
 type FormProps = {
   data: {
     nomeServiço: string;
@@ -19,6 +17,7 @@ function Form({ data, setForm, handleInputChange,
   const hidindForm = () => {
     setForm(true);
   };
+
   return (
     <form action="" onSubmit={ handleSubmitForm }>
       <label htmlFor="Nome serviço">
@@ -29,7 +28,6 @@ function Form({ data, setForm, handleInputChange,
           name="nomeServiço"
           value={ data.nomeServiço }
           onChange={ handleInputChange }
-          required
         />
       </label>
       <label htmlFor="Login">
@@ -40,7 +38,6 @@ function Form({ data, setForm, handleInputChange,
           name="login"
           value={ data.login }
           onChange={ handleInputChange }
-          required
         />
       </label>
       <label htmlFor="Senha">
@@ -58,6 +55,9 @@ function Form({ data, setForm, handleInputChange,
         <input
           id="Url"
           type="text"
+          name="url"
+          onChange={ handleInputChange }
+          value={ data.url }
         />
       </label>
       <button type="submit" disabled={ !isFormValid }>Cadastrar</button>
@@ -78,11 +78,9 @@ function Form({ data, setForm, handleInputChange,
         {/(?=.*\W+)/.test(data.senha)
           ? (<p className="valid-password-check">Possuir algum caractere especial</p>)
           : (<p className="invalid-password-check">Possuir algum caractere especial</p>)}
-
       </div>
 
     </form>
   );
 }
-
 export default Form;

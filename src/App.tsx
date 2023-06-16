@@ -5,6 +5,10 @@ import Form from './components/Form';
 
 function App() {
   const [mostraBotão, setMostraBotão] = useState(true);
+  const [saved, setSaved] = useState< { nomeServiço: string,
+    login: string,
+    senha: string,
+    url: string } []>([]);
 
   const handleButton = () => {
     setMostraBotão(false);
@@ -30,13 +34,10 @@ function App() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    setData({
-      nomeServiço: '',
-      login: '',
-      senha: '',
-      url: '',
-    });
+    const newData = [...saved, data];
+    console.log(newData);
+    setSaved(newData);
+    setMostraBotão(true);
   };
 
   const validateForm = () => {
@@ -62,6 +63,24 @@ function App() {
             handleSubmitForm={ handleSubmit }
             isFormValid={ isFormValid }
         />}
+
+      {saved.length > 0 && (
+
+        <ul>
+          {saved.map((cadastro, index) => (
+            <li key={ index }>
+              <a href={ cadastro.url }>{cadastro.nomeServiço}</a>
+              <p>
+                {cadastro.login}
+              </p>
+              <p>
+                {cadastro.senha}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
+      {!isFormValid && saved.length === 0 && <p>Nenhuma senha cadastrada</p>}
     </>
   );
 }
