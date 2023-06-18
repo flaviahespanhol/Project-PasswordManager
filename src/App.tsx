@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import Button from './components/Button';
 import Form from './components/Form';
+import Senhas from './components/Senhas';
 
 function App() {
   const [mostraBotão, setMostraBotão] = useState(true);
@@ -12,6 +13,12 @@ function App() {
 
   const handleButton = () => {
     setMostraBotão(false);
+    setData({
+      nomeServiço: '',
+      login: '',
+      senha: '',
+      url: '',
+    });
   };
 
   const handleForm = () => {
@@ -29,6 +36,7 @@ function App() {
     setData({
       ...data,
       [event.target.name]: event.target.value,
+
     });
   };
 
@@ -51,6 +59,11 @@ function App() {
 
   const isFormValid = validateForm();
 
+  const removingRegister = (index: number) => {
+    const registers = [...saved];
+    registers.splice(index, 1); setSaved(registers);
+  };
+
   return (
     <>
 
@@ -64,24 +77,20 @@ function App() {
             isFormValid={ isFormValid }
         />}
 
-      {saved.length > 0 && (
-
-        <ul>
-          {saved.map((cadastro, index) => (
-            <li key={ index }>
-              <a href={ cadastro.url }>{cadastro.nomeServiço}</a>
-              <p>
-                {cadastro.login}
-              </p>
-              <p>
-                {cadastro.senha}
-              </p>
-            </li>
-          ))}
-        </ul>
-      )}
-      {!isFormValid && saved.length === 0 && <p>Nenhuma senha cadastrada</p>}
+      {saved.length > 0 ? (
+        saved.map((cadastro, index) => (
+          <Senhas
+            key={ index }
+            nomeServiço={ cadastro.nomeServiço }
+            login={ cadastro.login }
+            senha={ cadastro.senha }
+            url={ cadastro.url }
+            handleDelete={ () => removingRegister(index) }
+          />
+        )))
+        : <p>Nenhuma senha cadastrada</p> }
     </>
   );
 }
+
 export default App;

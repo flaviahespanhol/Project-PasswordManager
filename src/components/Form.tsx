@@ -20,40 +20,40 @@ function Form({ data, setForm, handleInputChange,
 
   return (
     <form action="" onSubmit={ handleSubmitForm }>
-      <label htmlFor="Nome serviço">
+      <label htmlFor="nomeServiço">
         Nome do serviço
         <input
-          id="Nome serviço"
+          id="nomeServiço"
           type="text"
           name="nomeServiço"
           value={ data.nomeServiço }
           onChange={ handleInputChange }
         />
       </label>
-      <label htmlFor="Login">
+      <label htmlFor="login">
         Login
         <input
-          id="Login"
+          id="login"
           type="text"
           name="login"
           value={ data.login }
           onChange={ handleInputChange }
         />
       </label>
-      <label htmlFor="Senha">
+      <label htmlFor="senha">
         Senha
         <input
-          id="Senha"
+          id="senha"
           type="password"
           name="senha"
           onChange={ handleInputChange }
           value={ data.senha }
         />
       </label>
-      <label htmlFor="Url">
+      <label htmlFor="url">
         URL
         <input
-          id="Url"
+          id="url"
           type="text"
           name="url"
           onChange={ handleInputChange }
