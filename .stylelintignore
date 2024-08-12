@@ -1,1 +1,5 @@
 src/index.css
+src/components/buttons.css
+src/components/passwords.css
+src/components/form.css
+src/App.css
