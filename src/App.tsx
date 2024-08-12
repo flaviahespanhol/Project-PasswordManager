@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import './App.css';
-import Button from './components/Button';
+import RegisterBtn from './components/RegisterBtn';
 import Form from './components/Form';
-import Senhas from './components/Senhas';
+import Passwords from './components/Passwords';
 
 function App() {
-  const [mostraBotão, setMostraBotão] = useState(true);
+  const [showBtn, setShowBtn] = useState(true);
   const [saved, setSaved] = useState< { nomeServiço: string,
     login: string,
     senha: string,
     url: string } []>([]);
 
-  const handleButton = () => {
-    setMostraBotão(false);
+  const handleRegisterBtn = () => {
+    setShowBtn(false);
     setData({
       nomeServiço: '',
       login: '',
@@ -22,7 +22,7 @@ function App() {
   };
 
   const handleForm = () => {
-    setMostraBotão(true);
+    setShowBtn(true);
   };
 
   const [data, setData] = useState({
@@ -45,7 +45,7 @@ function App() {
     const newData = [...saved, data];
     console.log(newData);
     setSaved(newData);
-    setMostraBotão(true);
+    setShowBtn(true);
   };
 
   const validateForm = () => {
@@ -68,7 +68,7 @@ function App() {
     <>
 
       <h1>Gerenciador de senhas</h1>
-      {mostraBotão ? <Button onClick={ handleButton } />
+      {showBtn ? <RegisterBtn onClick={ handleRegisterBtn } />
         : <Form
             data={ data }
             setForm={ handleForm }
@@ -79,7 +79,7 @@ function App() {
 
       {saved.length > 0 ? (
         saved.map((cadastro, index) => (
-          <Senhas
+          <Passwords
             key={ index }
             nomeServiço={ cadastro.nomeServiço }
             login={ cadastro.login }
@@ -88,7 +88,7 @@ function App() {
             handleDelete={ () => removingRegister(index) }
           />
         )))
-        : <p>Nenhuma senha cadastrada</p> }
+        : <p>Nenhuma senha cadastrada!</p> }
     </>
   );
 }
